@@ -1,14 +1,31 @@
 <template>
   <div>
-    <h1>Welcome to the Forum</h1>
-    <div v-for="thread in threads">
-      <h2>{{thread.title}}</h2>
-      <!--ngmabil post id yang ada di setiap thread-->
-      <div v-for="postId in thread.posts">
-        <!--mengambil nama user yg membuat post di thread, mengambil post by id, lalu mengambil user id, lalu mengambil namanya-->
-        <p>{{users[posts[postId].userId].name}}</p>
-        <p>{{posts[postId].text}}</p>
+    <div v-for="thread in threads" class="col-large push-top">
+      <h1>{{thread.title}}</h1>
+      <div class="post-list">
+        <div v-for="postId in thread.posts" class="post">
+          <div class="user-info">
+            <a href="#" class="user-name">{{users[posts[postId].userId].name}}</a>
+            <a href="#">
+              <img class="avatar-large" :src="users[posts[postId].userId].avatar" alt="">
+            </a>
+            <p class="desktop-only text-small">107 post</p>
+          </div>
+
+          <div class="post-content">
+            <div>
+              {{posts[postId].text}}
+            </div>
+          </div>
+
+          <div class="post-date text-faded">
+            {{posts[postId].publishedAt}}
+          </div>
+
+        </div>
       </div>
+
+
     </div>
   </div>
 </template>
@@ -16,7 +33,6 @@
 <script>
   import sourceData from '@/data'
 
-  console.log('isi sourceData: ', sourceData)
   export default {
     name: 'HelloWorld',
     data () {
