@@ -2,7 +2,6 @@
   <div class="col-full">
     <h1>Welcome to the Forum</h1>
     <ThreadList :threads="threads"/>
-
   </div>
 </template>
 
