@@ -5,22 +5,10 @@
       <PostList
         :posts="posts"
       />
-      <form v-on:submit.prevent="addPost">
-        <div class="form-group">
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            class="form-input"
-            v-model="newPostText"
-          >
-          </textarea>
-        </div>
-        <div class="form-actions">
-          <button class="btn-blue">Submit Post</button>
-        </div>
-      </form>
+      <PostEditor
+        @save="addPost"
+        :threadId="id"
+      />
     </div>
   </div>
 </template>
@@ -28,11 +16,13 @@
 <script>
   import sourceData from '@/data'
   import PostList from '@/components/PostList'
+  import PostEditor from '@/components/PostEditor'
 
   export default {
     name: 'PageThreadShow',
     components: {
-      PostList
+      PostList,
+      PostEditor
     },
     props: {
       id: {
@@ -43,8 +33,7 @@
     // ini mirip state di react
     data () {
       return {
-        thread: sourceData.threads[this.id],
-        newPostText: ''
+        thread: sourceData.threads[this.id]
       }
     },
     computed: {
@@ -54,24 +43,13 @@
       }
     },
     methods: {
-      addPost () {
-        const postId = 'greatPost' + Math.random()
-        const post = {
-          text: this.newPostText,
-          publishedAt: Math.floor(Date.now() / 1000),
-          threadId: this.id,
-          userId: 'u4r8XCziZEWEXsj2UIKNHBoDh0n2',
-          '.key': postId
-        }
-        // // menambahkan post di posts
-        // sourceData.posts[postId] = post
-        // // menambahkan post id di thread
-        // this.thread.posts[postId] = postId
-        // Vue.set(object, propertyName, value)
+      addPost (eventData) {
+        const post = eventData.post
+        const postId = eventData.post['.key']
+
         this.$set(sourceData.posts, postId, post)
         this.$set(this.thread.posts, postId, postId)
         this.$set(sourceData.users[post.userId].posts, postId, postId)
-        this.newPostText = ''
       }
     }
   }
