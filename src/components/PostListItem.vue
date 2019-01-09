@@ -15,8 +15,8 @@
       </div>
     </div>
 
-    <div class="post-date text-faded" :title="post.publishedAt | dateFormat">
-      {{post.publishedAt | diffForHuman}}
+    <div class="post-date text-faded">
+      <AppDate :timestamp="post.publishedAt"/>
     </div>
 
   </div>
@@ -24,10 +24,13 @@
 
 <script>
   import sourceData from '@/data'
-  import moment from 'moment'
 
   export default {
     name: 'PostListItem',
+    // local components
+    // components: {
+    //   AppDate
+    // },
     props: {
       post: {
         required: true,
@@ -40,14 +43,6 @@
       },
       userPostsCount () {
         return Object.keys(this.user.posts).length
-      }
-    },
-    filters: {
-      dateFormat (date) {
-        return moment.unix(date).format('MMMM Do YYYY, h:mm:ss a')
-      },
-      diffForHuman (date) {
-        return moment.unix(date).fromNow()
       }
     }
   }
