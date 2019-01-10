@@ -34,18 +34,17 @@
 
     methods: {
       save () {
-        const postId = 'greatPost' + Math.random()
         const post = {
           text: this.newPostText,
           publishedAt: Math.floor(Date.now() / 1000),
           threadId: this.threadId,
-          userId: 'u4r8XCziZEWEXsj2UIKNHBoDh0n2',
-          '.key': postId
+          userId: 'u4r8XCziZEWEXsj2UIKNHBoDh0n2'
         }
         this.newPostText = ''
 
-        // emit(nameOfEvent, data/argument/payload)
+        // emit(nameOfEvent, data/argument/payload), untuk komunikasi ke parent component
         this.$emit('save', {post})
+        this.$store.dispatch('createPost', post)
       }
     }
   }

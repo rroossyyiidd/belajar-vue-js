@@ -6,7 +6,6 @@
 </template>
 
 <script>
-  import sourceData from '@/data'
   import ThreadList from '../components/ThreadList'
   import ForumList from '../components/ForumList'
   import CategoryList from '../components/CategoryList'
@@ -18,9 +17,9 @@
       ForumList,
       CategoryList
     },
-    data () {
-      return {
-        categories: Object.values(sourceData.categories)
+    computed: {
+      categories () {
+        return Object.values(this.$store.state.categories)
       }
     }
   }

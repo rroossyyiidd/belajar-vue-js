@@ -23,8 +23,6 @@
 </template>
 
 <script>
-  import sourceData from '@/data'
-
   export default {
     name: 'PostListItem',
     // local components
@@ -39,7 +37,7 @@
     },
     computed: {
       user () {
-        return sourceData.users[this.post.userId]
+        return this.$store.state.users[this.post.userId]
       },
       userPostsCount () {
         return Object.keys(this.user.posts).length
