@@ -23,6 +23,7 @@ export default new Vuex.Store({
       context.commit('appendPostToUser', {postId, userId: post.userId})
     }
   },
+  // untuk merubah isi store
   mutations: {
     setPost (state, {post, postId}) {
       Vue.set(state.posts, postId, post)

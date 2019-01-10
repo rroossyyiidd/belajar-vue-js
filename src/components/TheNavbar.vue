@@ -11,14 +11,14 @@
     </div>
 
     <li class="navbar-user">
-      <a href="#">
+      <router-link :to="{name: 'PageProfile'}">
         <img class="avatar-small" :src="user.avatar"
              alt="">
         <span>
                 {{user.name}}
                 <img class="icon-profile" src="../assets/img/arrow-profile.svg" alt="">
             </span>
-      </a>
+      </router-link>
 
       <!-- dropdown menu -->
       <!-- add class "active-drop" to show the dropdown -->

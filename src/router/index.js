@@ -5,6 +5,7 @@ import PageThreadShow from '@/pages/PageThreadShow'
 import PageNotFound from '@/pages/PageNotFound'
 import PageForum from '@/pages/PageForum'
 import PageCategory from '@/pages/PageCategory'
+import PageProfile from '@/pages/PageProfile'
 
 // Use plugins by calling the Vue.use() global method.
 Vue.use(Router)
@@ -32,6 +33,12 @@ export default new Router({
       path: '/category/:id',
       name: 'PageCategory',
       component: PageCategory,
+      props: true
+    },
+    {
+      path: '/me',
+      name: 'PageProfile',
+      component: PageProfile,
       props: true
     },
     {
